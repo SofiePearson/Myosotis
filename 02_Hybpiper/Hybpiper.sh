@@ -78,3 +78,10 @@ hybpiper stats -t_dna mega353.fasta gene namelist.txt --stats_filename hybpiper_
 
 module load HybPiper/2.0.1rc-Miniconda3
 hybpiper recovery_heatmap seq_lengths.tsv
+
+##############################################################
+## Run paralog retriever
+##############################################################
+
+module load HybPiper/2.0.1rc-Miniconda3
+hybpiper paralog_retriever #**ADD IN**
