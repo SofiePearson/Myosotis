@@ -66,8 +66,15 @@ module load Parallel/20200522
 for file in /nesi/nobackup/montpt03477/Weixuan/angiosperm353/01_trimmedreads/*_1P.fq; do         withpath="${file}";         filename=${withpath##*/};         base="${filename%*_1P.fq}";         echo "${base}";          hybpiper assemble --run_intronerate         --readfiles /nesi/nobackup/montpt03477/Weixuan/angiosperm353/01_trimmedreads/"${base}"*P.fq         --targetfile_dna mega353.fasta --bwa         --prefix "${base}"_nomerge  --no_padding_supercontigs         --timeout_assemble 600 --paralog_min_length_percentage 0.5 --start_from exonerate_contigs ; done
 
 ##############################################################
-## Run hypiper stats 
+## Run hybpiper stats 
 ##############################################################
 
 module load HybPiper/2.0.1rc-Miniconda3
 hybpiper stats -t_dna mega353.fasta gene namelist.txt --stats_filename hybpiper_stats --seq_lengths_filename seq_lengths
+
+##############################################################
+## Create heatmap
+##############################################################
+
+module load HybPiper/2.0.1rc-Miniconda3
+hybpiper recovery_heatmap seq_lengths.tsv
