@@ -1,0 +1,1 @@
+## We also plotted the number of genes with assembled contigs, stitched exons (genes with sequence derived from multiple SPAdes contigs), and paralogs (‘warning by depth’ in Hybpiper), respectively, vs. number of mapped reads in R (Fig. S1A–C).
