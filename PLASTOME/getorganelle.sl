@@ -171,3 +171,81 @@ for file in /nesi/nobackup/montpt03477/Weixuan/plastome/01_trimmed/CHL_P1_0*_1P.
 		
 	done
 
+## check which one is de novo
+##########################################################
+plastome3.sh
+##########################################################
+#!/bin/bash -e
+#SBATCH --account		montpt03477
+#SBATCH --job-name=plastome  #job name (shows up in the queue)
+#SBATCH --cpus-per-task=40   # number of CPUs per task (1 by default)
+#SBATCH --time=60:00:00 #Walltime (HH:MM:SS)
+#SBATCH --mem=20G  #Memory in GB
+
+module load Miniconda3/4.12.0
+
+source $(conda info --base)/etc/profile.d/conda.sh
+conda activate /scale_wlg_persistent/filesets/project/montpt03477/biopython
+
+cd /nesi/nobackup/montpt03477/Weixuan/plastome/02_plastomeoutput/
+module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
+module load Bowtie2/2.4.5-GCC-11.3.0
+
+
+for file in /nesi/nobackup/montpt03477/Weixuan/plastome/01_trimmed/CHL_P2_8*_1P.fq
+	do 
+	withpath="${file}" 
+	filename=${withpath##*/} 
+	base="${filename%*_1P.fq}" 
+	echo "${base}" 
+	
+	get_organelle_from_reads.py -1 ../01_trimmed/"${base}"_1P.fq -2 ../01_trimmed/"${base}"_2P.fq -o plastome_output2/"${base}" -t 40  -R 15 -k 21,45,65,85,105 -F embplant_pt --continue
+		
+	done
+
+
+
+for file in /nesi/nobackup/montpt03477/Weixuan/plastome/01_trimmed/CHL_P2_9*_1P.fq
+        do
+        withpath="${file}"
+        filename=${withpath##*/}
+        base="${filename%*_1P.fq}"
+        echo "${base}"
+
+        get_organelle_from_reads.py -1 ../01_trimmed/"${base}"_1P.fq -2 ../01_trimmed/"${base}"_2P.fq -o plastome_outpu$
+
+        done
+
+######################################
+## getorganelle.sl
+######################################
+#!/bin/bash -e
+#SBATCH --account		montpt03477
+#SBATCH --job-name		getorg1
+#SBATCH --cpus-per-task		8
+#SBATCH --time			150:00:00
+#SBATCH --mem			64G
+#SBATCH --output                getorganelle_batch1-%j.out
+#SBATCH --error                 getorganelle_batch1-%j.err
+#SBATCH --mail-type             ALL
+#SBATCH --mail-user             sofie.pearson@hotmail.com
+
+module purge
+module load Miniconda3/4.12.0
+
+cd /nesi/nobackup/montpt03477/plastome
+source $(conda info --base)/etc/profile.d/conda.sh
+conda activate /scale_wlg_persistent/filesets/project/montpt03477/biopython
+
+cd /nesi/nobackup/montpt03477/plastome/input_files/batch1/
+
+for file in /nesi/nobackup/montpt03477/plastome/input_files/batch1/*_1P.fq
+        do
+        withpath="${file}"
+        filename=${withpath##*/}
+        base="${filename%*_1P.fq}"
+        echo "${base}"
+
+        get_organelle_from_reads.py -s Trigonotis_peduncularis.fasta --genes 12_myo_refs.fasta -1 "${base}"_1P.fq -2 "${base}"_2P.fq -o "${base}" -R 40 -t 5 -w 60 -k 21,45,65,85 -F embplant_pt --max-reads inf --reduce-reads-for-coverage inf --max-extending-len 6000
+
+        done
