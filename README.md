@@ -1,6 +1,6 @@
-# Myosotis Phylogenomics
+# _Myosotis_ Phylogenomics
 
-This project is aiming to reconstruct the phylogeny of Southern Hemisphere Myosotis using 353Angiosperm bait set and genome skimming.
+This project is aiming to reconstruct the phylogeny of Southern Hemisphere _Myosotis_ (Boraginaceae) using 353Angiosperm bait set and genome skimming.
 
 Project Collaborators: Heidi M. Meudt, Sofie Pearson, Weixuan Ning, Jessica M. Prebble, Jennifer A. Tate
 
