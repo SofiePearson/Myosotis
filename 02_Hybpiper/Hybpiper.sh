@@ -67,4 +67,4 @@ hybpiper recovery_heatmap seq_lengths.tsv
 ##############################################################
 
 module load HybPiper/2.0.1rc-Miniconda3
-hybpiper paralog_retriever #**ADD IN**
+hybpiper paralog_retriever namelist.txt -t_dna mega353.fasta
