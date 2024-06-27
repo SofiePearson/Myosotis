@@ -13,7 +13,9 @@ Weixuan Present address (2024): Iowa State University, Ames, IA, 50011, USA
 
 Data types: 353Angiosperms (Illumina miSeq and HiSeq), genome skimming - plastome and nrDNA (Illumina HiSeq)
 
-Data location: TBC
+Data location: 
+Dryad: doi:10.5061/dryad.v41ns1s53 (link will go live on publication)
+NCBI: BioProject PRJNA1125924 (data will be available once manuscript is published)
 
 Date started: Samples collected since 2011, lab work for this project began 2021
 
