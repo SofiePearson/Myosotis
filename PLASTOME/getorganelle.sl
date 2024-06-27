@@ -147,3 +147,24 @@ for file in /nesi/nobackup/montpt03477/plastome/*_1P.fq
 ## run variantcall.sh script in loop using example code bellow:
 bash variantcall.sh prefix.supercontigs.fasta samplelist.txt
 
+## Source from:
+## https://github.com/lindsawi/HybSeq-SNP-Extraction/tree/master
+
+#########
+#!/bin/bash -e
+#SBATCH --job-name=plastome_01  #job name (shows up in the queue)
+#SBATCH --account=montpt03477
+#SBATCH --cpus-per-task=40   # number of CPUs per task (1 by default)
+#SBATCH --time=60:00:00 #Walltime (HH:MM:SS)
+#SBATCH --mem=40G  #Memory in GB
+ 
+module load Python/3.9.9-gimkl-2020a
+module load BWA/0.7.17-gimkl-2017a
+module load GATK/4.2.6.1-gimkl-2020a
+module load PLINK/2.00a2.3
+module load SAMtools/1.9-GCC-7.4.0
+module load BCFtools/1.9-GCC-7.4.0
+ 
+cd /nesi/nobackup/montpt03477/Weixuan/plastome/HybSeq-SNP-Extraction
+ 
+for i in $(cat namelist_plastome1.csv); do  echo "${i}"; bash variantcall.sh sorted_changed_CHL_P1_09_plastome1.fasta "${i}"; done
