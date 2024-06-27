@@ -49,23 +49,6 @@ for file in /nesi/nobackup/montpt03477/Weixuan/angiosperm353/01_trimmedreads/l*_
 	done
 
 ##############################################################
-## hybpiper_exonerator.sh
-##############################################################
-#!/bin/bash -e
-#SBATCH --job-name=hybpiper7  #job name (shows up in the queue)
-#SBATCH --account=montpt03477
-#SBATCH --cpus-per-task=30   # number of CPUs per task (1 by default)
-#SBATCH --time=20:00:00 #Walltime (HH:MM:SS)
-#SBATCH --mem=60G  #Memory in GB
-
-module load Python/3.9.9-gimkl-2020a
-module load HybPiper/2.0.1rc-Miniconda3
-module load Parallel/20200522
-
-
-for file in /nesi/nobackup/montpt03477/Weixuan/angiosperm353/01_trimmedreads/*_1P.fq; do         withpath="${file}";         filename=${withpath##*/};         base="${filename%*_1P.fq}";         echo "${base}";          hybpiper assemble --run_intronerate         --readfiles /nesi/nobackup/montpt03477/Weixuan/angiosperm353/01_trimmedreads/"${base}"*P.fq         --targetfile_dna mega353.fasta --bwa         --prefix "${base}"_nomerge  --no_padding_supercontigs         --timeout_assemble 600 --paralog_min_length_percentage 0.5 --start_from exonerate_contigs ; done
-
-##############################################################
 ## Run hybpiper stats 
 ##############################################################
 
