@@ -137,6 +137,8 @@ for file in /nesi/nobackup/montpt03477/plastome/*_1P.fq
 
         get_organelle_from_reads.py -1 "${base}"_1P.fq -2 "${base}"_2P.fq -o plastome_output/"${base}" -R 15 -k 21,45,65,85,105 -F embplant_pt
 
+get_organelle_from_reads.py -1 "${base}"_1P.fq -2 "${base}"_2P.fq -o nr_output2/"${base}" -R 10 -k 35,85,115 -F embplant_nr
+
         done
 
 
