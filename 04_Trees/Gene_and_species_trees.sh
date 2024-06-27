@@ -21,4 +21,4 @@ java -jar /nesi/nobackup/montpt03477/Astral/astral.5.7.8.jar -i genetrees_323_sa
 #####################################
 ## reroot trees at: after subsetting gene trees with outgroup present, after collapsing nodes, and after constructing the species tree.
 ## an example of re-rooting the trees after collapsing nodes:
-python reroot_trees.py genetrees_323_samples_300_genes_bs30.treefile > genetrees_323_samples_300_genes_bs30_rerooted.treefile
+python reroot_trees.py genetrees_323_samples_300_genes_bs30.treefile outgroup.list > genetrees_323_samples_300_genes_bs30_rerooted.treefile
