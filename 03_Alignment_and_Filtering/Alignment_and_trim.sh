@@ -15,3 +15,14 @@ module load trimAl/1.4.1-GCC-9.2.0
 for i in *_supercontig.fasta; do mafft --auto ${i} > ${i%.*}_aln.fasta; done
  
 for file in *_aln.fasta; do trimal -in $file -out ${file%%.fasta}_trim.fasta -gt 0.7 -htmlout ${file%%.fasta}_trim.html; done
+
+######################
+## run AMAS.py
+######################
+
+## install AMAS from:
+https://github.com/marekborowiec/AMAS/
+
+## run AMAS
+python3 AMAS.py summary -f fasta -d dna -i *.fasta
+
